@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "457297618117",
+    "firebase_url": "https://minicaisse-default-rtdb.firebaseio.com",
+    "project_id": "minicaisse",
+    "storage_bucket": "minicaisse.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:457297618117:android:1fa91b930bcba00658fcac",
+        "android_client_info": {
+          "package_name": "com.app.minicaisse"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB9Dnd9yidwO8RHtcYPuTbTQKOOKVIpXAA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
