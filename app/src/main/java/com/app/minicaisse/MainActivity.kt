@@ -29,6 +29,10 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import androidx.compose.foundation.Image
+import androidx.compose.ui.res.painterResource
+import androidx.compose.foundation.layout.size
 
 /** Programme l'envoi vers Firebase (s'exécute dès que le réseau est disponible). */
 fun enqueueSync(context: Context) {
@@ -43,6 +47,7 @@ fun enqueueSync(context: Context) {
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
+        installSplashScreen()
         super.onCreate(savedInstanceState)
         setContent {
             MiniCaisseTheme {
@@ -95,7 +100,7 @@ fun CaisseScreen(
     onHistoryClick: () -> Unit
 ) {
     val cart = remember { mutableStateMapOf<Product, Int>() }
-    var statusText by remember { mutableStateOf("Prêt") }
+    var statusText by remember { mutableStateOf("Bienvenue ! Votre espace caisse est prêt 😊") }
     val totalPrice = cart.entries.sumOf { it.key.price * it.value }
 
     // Au démarrage de l'écran, on relance les impressions en attente/échec
@@ -112,19 +117,29 @@ fun CaisseScreen(
         }
     }
 
-    Scaffold(
-        modifier = Modifier.fillMaxSize(),
-        topBar = {
-            TopAppBar(
-                title = { Text("Caisse") },
-                actions = {
-                    TextButton(onClick = onHistoryClick) {
-                        Text("Historique")
+        Scaffold(
+            modifier = Modifier.fillMaxSize(),
+            topBar = {
+                TopAppBar(
+                    title = {
+                        Row(verticalAlignment = Alignment.CenterVertically) {
+                            Image(
+                                painter = painterResource(id = R.drawable.logo),
+                                contentDescription = "Logo MiniCaisse",
+                                modifier = Modifier.size(32.dp)
+                            )
+                            Spacer(Modifier.width(8.dp))
+                            Text("Caisse")
+                        }
+                    },
+                    actions = {
+                        TextButton(onClick = onHistoryClick) {
+                            Text("Historique")
+                        }
                     }
-                }
-            )
-        }
-    ) { padding ->
+                )
+            }
+        ) { padding ->
         Column(
             modifier = Modifier.padding(padding).padding(16.dp).fillMaxSize(),
             horizontalAlignment = Alignment.CenterHorizontally

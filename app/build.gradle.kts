@@ -41,6 +41,8 @@ android {
 }
 
 dependencies {
+    // SplashScreen API
+    implementation("androidx.core:core-splashscreen:1.0.1")
     // Firebase Analytics
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.7.3")
         // Firebase Realtime Database
