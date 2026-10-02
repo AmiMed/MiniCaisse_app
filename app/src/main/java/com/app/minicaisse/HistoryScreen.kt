@@ -29,7 +29,7 @@ private const val PAGE_SIZE = 5
 fun HistoryScreen(
     saleDao: SaleDao,
     onBackClick: () -> Unit,
-    onRefresh: suspend () -> Unit = {}   // ex: { syncManager.syncNow() }
+    onRefresh: suspend () -> Unit = {} 
 ) {
     // null = Room n'a pas encore répondu (chargement initial)
     val salesOrNull by saleDao.getAllSales().collectAsState(initial = null)

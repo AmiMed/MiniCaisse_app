@@ -33,6 +33,8 @@ import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.compose.foundation.Image
 import androidx.compose.ui.res.painterResource
 import androidx.compose.foundation.layout.size
+import androidx.compose.material3.ButtonDefaults
+import androidx.compose.ui.graphics.Color
 
 /** Programme l'envoi vers Firebase (s'exécute dès que le réseau est disponible). */
 fun enqueueSync(context: Context) {
@@ -129,7 +131,7 @@ fun CaisseScreen(
                                 modifier = Modifier.size(32.dp)
                             )
                             Spacer(Modifier.width(8.dp))
-                            Text("Caisse")
+                            Text("MiniCaisse")
                         }
                     },
                     actions = {
@@ -228,10 +230,24 @@ fun ProductRow(product: Product, quantity: Int, onAddClick: () -> Unit, onRemove
             Text(product.name, style = MaterialTheme.typography.bodyLarge)
             Text("${product.price} TND", color = MaterialTheme.colorScheme.secondary)
         }
-        if (quantity > 0) {
-            TextButton(onClick = onRemoveClick) { Text("-") }
+                if (quantity > 0) {
+            Button(
+                onClick = onRemoveClick,
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = Color(0xFFD32F2F) 
+                )
+            ) {
+                Text("-")
+            }
             Text("$quantity", modifier = Modifier.padding(horizontal = 8.dp))
         }
-        Button(onClick = onAddClick) { Text("+") }
+        Button(
+            onClick = onAddClick,
+            colors = ButtonDefaults.buttonColors(
+                containerColor = Color(0xFF388E3C)
+            )
+        ) {
+            Text("+")
+        }
     }
 }
